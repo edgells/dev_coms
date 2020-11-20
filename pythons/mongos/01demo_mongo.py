@@ -10,23 +10,18 @@ collection = db['test_dev_collection']
 
 def mongo_add_data(db: Database):
     cookies = [{
-        'name': 'laowang%s' % n ,
+        'name': 'laowang%s' % n,
         "text": "My first blog post!",
         "tags": ["mongodb", "python", "pymongo"],
         "date": datetime.datetime.utcnow(),
         'state': 0,
-    } for n in range(10000)]
+    } for n in range(100)]
 
     posts = db.posts  # get collection
     post_id = posts.insert_many(cookies)
     ret = db.posts.find({})
     print(post_id.inserted_ids)
-
-
-def mongo_bluke_data():
-    collection.update_many({
-
-    })
+    print(len(post_id.inserted_ids))
 
 
 if __name__ == '__main__':
