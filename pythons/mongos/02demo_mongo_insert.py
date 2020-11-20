@@ -22,6 +22,8 @@ def mongo_insert_one():
     })
 
     print(ret)
+    print(ret.inserted_id)      # doc id
+    print(ret.acknowledged)     # 是否写完
 
 
 def mongo_insert_many():
@@ -34,7 +36,10 @@ def mongo_insert_many():
         for n in range(10000)
     ])
     print(ret)
+    print(ret.inserted_ids)     # doc ids
+    print(ret.acknowledged)     # 是否写完
 
 
 if __name__ == '__main__':
     mongo_insert_many()
+
