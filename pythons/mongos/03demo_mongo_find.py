@@ -5,50 +5,64 @@ import datetime
 mongo = MongoClient()
 
 db = mongo['test_dev_db']
-collection = mongo['test_dev_collection']
+collection = db['test_dev_collection_update']
 
 
-def mongo_db_list_all_data():
-    print(db.list_collection_names())
+# 查询单条
+def find_one():
+    print(collection.find_one())
 
 
-def mongo_select_one_data():
-    import pprint
-
-    pprint.pprint(db.posts.find_one())
-
-
-def mongo_select_find_one_data():
-    import pprint
-
-    pprint.pprint(db.posts.find_one({'author': 'test'}))
+# 查询集
+def find_many():
+    for doc in collection.find({}):
+        print(doc)
 
 
-def mongo_find_by_id():
-    import pprint
+# 查询操作符
+def find_opr():
+    """
+    query operators
+    $in, 在array 内 example: {'name': {'$in': ['python', 'mongodb', 'pymongo']}
 
-    post = db.posts.find_one({'author': 'test'})
+    $expr, 字段比较 {'$expr': {'$eq': ['$state', 0]}}
+    :return:
+    """
+    # $in
+    # cursor = collection.find({'tags': {'$in': ['python', 'mongodb']}})
+    # list_dict_data = list(cursor)
+    # print(list_dict_data)
+    # print(len(list_dict_data))
 
-    # id need  str converto obj
+    # $expr field compare
+    # cursor = collection.find({'$expr': {'$eq': ['$state', 1]}})
+    # print(list(cursor))
 
-    from bson.objectid import ObjectId
+    # $regex
+    # $options i 不区分大小写 x 忽略所有的空白字符 s 允许 . 匹配所有的字符
+    # cursor = collection.find({'tags': {'$regex': '^py.*'}})
+    # print(list(cursor))
 
-    post_id = str(post['_id'])
-    # print(post_id)
-    post_id = ObjectId(post_id)
-    # get by id
-    post_dev = db.posts.find_one({'_id': post_id})
+    # $all
+    # cursor = collection.find({'tags': {'$all': ['python']}})
+    # print(list(cursor))
 
-    print(post_dev)
+    # $and
+    # cursor = collection.find({'$and': [{'name': 'laowang0'}, {'tags': {'$in': ['python']}}]})
 
-    from pprint import pprint
-    pprint(db.posts.find({'_id': post_id}).explain())
+    # $or
+    # cursor = collection.find({'$or': [{'name': 'laowang0'}, {'tags': {'$in': ['python']}}]})
+    # print(list(cursor))
 
+    # $and + $or
+    # cursor = collection.find({
+    #     'name': 'laowang0',
+    #     '$or': [{'tags': {'$in': ['python', 'mongodb']}}]
+    # })
+    # print(list(cursor))
 
-def mongo_doc_count():
-    print(db.posts.count_documents({}))
-
+    #
 
 if __name__ == '__main__':
-    # mongo_add_data(db)
-    mongo_find_by_id()
+    # mongo_add_data(db
+    find_opr()
