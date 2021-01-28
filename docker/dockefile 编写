@@ -1,0 +1,9 @@
+格式：
+FROM image:tag
+
+COPY local imagepath
+add local imagepath # 这个操作一般用于归档文件解压
+RUN 运行shell 命令
+
+ENV 配置环境变量
+CMD []   用于配置容器启动时执行的命令

@@ -1,0 +1,5 @@
+FROM rabbitmq:3-management
+
+ENV RABBITMQ_DEFAULT_USER=admin RABBITMQ_DEFAULT_PASS=admin
+EXPOSE 15672:15672 # 管理服务
+EXPOSE 5672:5672    # 通信服务
