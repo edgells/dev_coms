@@ -1,7 +1,7 @@
 import xlrd
 
 
-workbook = xlrd.open_workbook("C:\\Users\\pc11\\Desktop\\test_data.xls")
+workbook = xlrd.open_workbook("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.07数据.xlsx")
 worksheet = workbook.sheet_by_index(0)
 
 print(worksheet.nrows)  # 总行数
