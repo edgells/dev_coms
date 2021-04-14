@@ -5,7 +5,7 @@ good_list = []
 follow_list = []
 count = 0
 
-with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.18data.csv")as csv_file:
+with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.28data.csv")as csv_file:
     reader = csv.DictReader(csv_file)
 
     for row in reader:
@@ -28,9 +28,10 @@ with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.18data.csv")as c
                 }
             )
 
-with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.18.good.json", 'w', encoding='utf-8')as f:
-    json.dump(good_list, f)
+if len(good_list) > 0:
+    with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.28.good.json", 'w', encoding='utf-8')as f:
+        json.dump(good_list, f)
 
-
-with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.18.follow.json", 'w', encoding='utf-8')as f:
-    json.dump(follow_list, f)
+if len(follow_list) > 0:
+    with open("C:\\Users\\pc11\\Desktop\\check_system_test_data\\03.28.follow.json", 'w', encoding='utf-8')as f:
+        json.dump(follow_list, f)

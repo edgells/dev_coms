@@ -6,6 +6,10 @@ import time
 loop = asyncio.get_event_loop()
 loop.set_debug(True)
 
+"""
+    协程函数：
+        
+"""
 
 async def task():
     print("hello")
@@ -14,7 +18,7 @@ async def task():
 
 
 async def main():
-    # 顺序执行任务
+    # 并发执行任务
     tasks = await asyncio.gather(
         task(),
         task(),
@@ -23,6 +27,12 @@ async def main():
         task(),
 
     )
+
+    task1 = asyncio.create_task(task())
+    task2 = asyncio.create_task(task())
+
+    await task1
+    await task2
 
 # 运行一个完整的异步任务
 print(f"started at {time.strftime('%X')}")
